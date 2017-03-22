@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MyService extends Service {
     private MyThread myThread;
-    //private MediaPlayer player;
+    private MediaPlayer play;
 
 
     //@Nullable
@@ -22,8 +22,9 @@ public class MyService extends Service {
 
     //สร้าง onCreate() เมื่อมีการสั่ง start service จะมาเรียกใช้ method นี้
     public void onCreate() {
-
         myThread = new MyThread();
+        play = MediaPlayer.create(getBaseContext(),
+                R.raw.something_just_like_this_jfla);
     }
 
     //เมื่อ Service ถูกสร้างแล้ว
@@ -35,7 +36,7 @@ public class MyService extends Service {
         }
 
         //กรณี service ถูกทำลาย ก็จะทำการสร้างและเรียก method (แรมไม่พอ ถูกปิด อื่นๆ) จะทำให้เรียกใช้ใหม่อัตรโนมัติ
-        return START_STICKY;
+        return START_STICKY; //START_NOT_STICKY
     }
 
     //ถ้าสั่งให้ stop service จะเรียก method onDestroy ของ Service
@@ -59,8 +60,7 @@ public class MyService extends Service {
         //method เมื่อ thread ถูกเรียกใช้งาน
         public void run() {
 
-            MediaPlayer play = MediaPlayer.create(getBaseContext(),
-                    R.raw.something_just_like_this_jfla);
+            //MediaPlayer play
             play.start();
 
             //สั่งให้พิมพ์ค่า i บน Log ทุก 3 วินาที
