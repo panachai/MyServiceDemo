@@ -58,6 +58,11 @@ public class MyService extends Service {
 
         //method เมื่อ thread ถูกเรียกใช้งาน
         public void run() {
+
+            MediaPlayer play = MediaPlayer.create(getBaseContext(),
+                    R.raw.something_just_like_this_jfla);
+            play.start();
+
             //สั่งให้พิมพ์ค่า i บน Log ทุก 3 วินาที
             while (true) {//ทำให้ขณะ Thread ยังมีชีวิต
                 //แสดงค่า i บน log
@@ -72,6 +77,7 @@ public class MyService extends Service {
 
                 //เมื่อสั่งให้ Stop Service ให้ออกจากลูปยุติการทำงานของ Thread
                 if (finish == true) {
+                    play.stop();
                     return; //return false
                 }
 
