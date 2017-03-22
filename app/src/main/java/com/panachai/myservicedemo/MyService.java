@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MyService extends Service {
     private MyThread myThread;
-    private MediaPlayer player;
+    //private MediaPlayer player;
 
 
     //@Nullable
